@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FashionRec Reviews</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="reviews">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-kicker">Fashion DBMS Project</div>
+        <div class="brand-title">FashionRec</div>
+        <p class="brand-copy">Review and rating module with average rating support.</p>
+      </div>
+      <div class="nav-section-label">Navigation</div>
+      <nav class="nav-list">
+        <a class="nav-link" data-nav href="index.html"><span class="nav-badge">DB</span><span>Dashboard</span></a>
+        <a class="nav-link" data-nav href="users.html"><span class="nav-badge">US</span><span>Users</span></a>
+        <a class="nav-link" data-nav href="categories.html"><span class="nav-badge">CT</span><span>Category</span></a>
+        <a class="nav-link" data-nav href="garments.html"><span class="nav-badge">GA</span><span>Garments</span></a>
+        <a class="nav-link" data-nav href="carts.html"><span class="nav-badge">CA</span><span>Cart</span></a>
+        <a class="nav-link" data-nav href="orders.html"><span class="nav-badge">OR</span><span>Orders</span></a>
+        <a class="nav-link" data-nav href="order_items.html"><span class="nav-badge">OI</span><span>Order Items</span></a>
+        <a class="nav-link" data-nav href="address.html"><span class="nav-badge">AD</span><span>Address</span></a>
+        <a class="nav-link" data-nav href="body_measure.html"><span class="nav-badge">BM</span><span>Body Measure</span></a>
+        <a class="nav-link" data-nav href="reviews.html"><span class="nav-badge">RV</span><span>Reviews</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="footer-label">Module</div>
+        <div class="footer-value"><span class="status-dot"></span><span id="page-kicker">reviews</span></div>
+      </div>
+    </aside>
+    <main class="content">
+      <section class="topbar">
+        <div>
+          <h1 id="page-title">Reviews</h1>
+          <p id="key-info">Keys: review_id</p>
+        </div>
+        <div class="topbar-meta">
+          <div class="meta-label">Live time</div>
+          <div class="meta-value" id="clock">--</div>
+        </div>
+      </section>
+      <section class="panel-grid">
+        <article class="panel span-5">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Add Record</h2>
+              <p class="panel-subtitle">Add ratings and optional comments for garments.</p>
+            </div>
+          </div>
+          <div id="create-form-grid" class="form-grid"></div>
+          <div class="actions" style="margin-top:18px;">
+            <button class="btn btn-primary" onclick="createRecord()">Add</button>
+            <button class="btn btn-secondary" onclick="loadCrudPage('reviews')">Refresh</button>
+          </div>
+        </article>
+        <article class="panel span-7">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Records</h2>
+              <p class="panel-subtitle" id="record-count">0 records</p>
+            </div>
+            <div class="toolbar">
+              <div class="search-box field">
+                <label for="table-search">Search</label>
+                <input id="table-search" type="text" placeholder="Search reviews" oninput="applySearch()" />
+              </div>
+            </div>
+          </div>
+          <div id="records-table"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

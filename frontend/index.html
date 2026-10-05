@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FashionRec Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="dashboard">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-kicker">Fashion DBMS Project</div>
+        <div class="brand-title">FashionRec</div>
+        <p class="brand-copy">Live tables and charts.</p>
+      </div>
+
+      <div class="nav-section-label">Navigation</div>
+      <nav class="nav-list">
+        <a class="nav-link" data-nav href="index.html"><span class="nav-badge">DB</span><span>Dashboard</span></a>
+        <a class="nav-link" data-nav href="users.html"><span class="nav-badge">US</span><span>Users</span></a>
+        <a class="nav-link" data-nav href="categories.html"><span class="nav-badge">CT</span><span>Category</span></a>
+        <a class="nav-link" data-nav href="garments.html"><span class="nav-badge">GA</span><span>Garments</span></a>
+        <a class="nav-link" data-nav href="carts.html"><span class="nav-badge">CA</span><span>Cart</span></a>
+        <a class="nav-link" data-nav href="orders.html"><span class="nav-badge">OR</span><span>Orders</span></a>
+        <a class="nav-link" data-nav href="order_items.html"><span class="nav-badge">OI</span><span>Order Items</span></a>
+        <a class="nav-link" data-nav href="address.html"><span class="nav-badge">AD</span><span>Address</span></a>
+        <a class="nav-link" data-nav href="body_measure.html"><span class="nav-badge">BM</span><span>Body Measure</span></a>
+        <a class="nav-link" data-nav href="reviews.html"><span class="nav-badge">RV</span><span>Reviews</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="footer-label">Database status</div>
+        <div class="footer-value"><span class="status-dot"></span><span>sfashionsdb / MySQL</span></div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="topbar">
+        <div>
+          <h1>Dashboard</h1>
+        </div>
+        <div class="topbar-meta">
+          <div class="meta-label">Live time</div>
+          <div class="meta-value" id="clock">--</div>
+        </div>
+      </section>
+
+      <section class="hero">
+        <h2 class="hero-title" id="hero-title">Welcome to Fashion Recommendation System</h2>
+        <div class="pulse-ribbon">
+          <div class="pulse-card">
+            <small>Total Records</small>
+            <strong id="stat-total">--</strong>
+            <span>Across all modules</span>
+          </div>
+          <div class="pulse-card">
+            <small>Order Quantity Pulse</small>
+            <strong id="pulse-value">--</strong>
+            <span>Total quantity in order items</span>
+          </div>
+          <div class="pulse-card">
+            <small>Active Tables</small>
+            <strong id="pulse-tables">--</strong>
+            <span>Main tables in this project</span>
+          </div>
+          <div class="pulse-card">
+            <small>Average Rating</small>
+            <strong id="pulse-rating">--</strong>
+            <span>Across all garment reviews</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-label">Users</div>
+          <div class="stat-value" id="stat-users">--</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Category</div>
+          <div class="stat-value" id="stat-categories">--</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Garments</div>
+          <div class="stat-value" id="stat-garments">--</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Cart</div>
+          <div class="stat-value" id="stat-carts">--</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Orders</div>
+          <div class="stat-value" id="stat-orders">--</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Order Items</div>
+          <div class="stat-value" id="stat-items">--</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Address</div>
+          <div class="stat-value" id="stat-address">--</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Body Measure</div>
+          <div class="stat-value" id="stat-measures">--</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Reviews</div>
+          <div class="stat-value" id="stat-reviews">--</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Revenue</div>
+          <div class="stat-value" id="stat-revenue">--</div>
+        </article>
+      </section>
+
+      <section class="panel-grid">
+        <article class="panel span-8">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Smart Insights</h2>
+            </div>
+          </div>
+          <div class="insight-grid" id="insight-grid"></div>
+        </article>
+
+        <article class="panel span-4">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Recommendations</h2>
+            </div>
+          </div>
+          <div class="toolbar" style="margin-bottom:16px;">
+            <div class="field search-box">
+              <label for="recommendation-user">User ID</label>
+              <input id="recommendation-user" type="number" placeholder="Try 1, 2, 3..." oninput="loadRecommendations()" />
+            </div>
+            <div class="field search-box">
+              <label for="recommendation-gender">Gender</label>
+              <input id="recommendation-gender" type="text" placeholder="Female, Male, Unisex" oninput="loadRecommendations()" />
+            </div>
+          </div>
+          <div class="inventory-grid" id="recommendation-list"></div>
+        </article>
+
+        <article class="panel span-8">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Table Graph</h2>
+            </div>
+          </div>
+          <div class="sparkline" id="sparkline-bars"></div>
+        </article>
+
+        <article class="panel span-4">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Live Table Inventory</h2>
+            </div>
+          </div>
+          <div class="inventory-grid" id="table-inventory"></div>
+        </article>
+
+        <article class="panel span-6">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Most Popular Garments</h2>
+            </div>
+          </div>
+          <div class="inventory-grid" id="popular-garments"></div>
+        </article>
+
+        <article class="panel span-6">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Analytics Snapshot</h2>
+            </div>
+          </div>
+          <div class="chart-card"><canvas id="totalsChart"></canvas></div>
+        </article>
+
+        <article class="panel span-6">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Top Garments</h2>
+            </div>
+          </div>
+          <div class="chart-card"><canvas id="ordersPerUserChart"></canvas></div>
+        </article>
+
+        <article class="panel span-6">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Revenue By Category</h2>
+            </div>
+          </div>
+          <div class="chart-card"><canvas id="garmentsByCategoryChart"></canvas></div>
+        </article>
+
+        <article class="panel span-12">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Revenue Over Time</h2>
+            </div>
+          </div>
+          <div class="chart-card wide"><canvas id="ordersOverTimeChart"></canvas></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
